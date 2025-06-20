@@ -100,3 +100,27 @@ input::placeholder {
   font-size: 12px;
   color: #999;
 }
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #fff;
+  color: #111;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
