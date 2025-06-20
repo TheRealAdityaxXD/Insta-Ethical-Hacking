@@ -32,6 +32,7 @@ body {
   width: 100%;
   box-shadow: 0 10px 40px var(--shadow);
   transition: 0.3s ease-in-out;
+  margin-top: 80px; /* Added to push content below top bar */
 }
 
 .container:hover {
@@ -101,3 +102,21 @@ input::placeholder {
   color: #999;
 }
 
+/* === TOP BAR === */
+.top-bar {
+  width: 100%;
+  background-color: #ff69b4; /* Hot pink */
+  padding: 12px 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.top-bar-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 1px;
+}
