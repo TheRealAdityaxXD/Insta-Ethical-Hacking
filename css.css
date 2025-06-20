@@ -1,44 +1,57 @@
-/* === GLOBAL STYLES === */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #0f0f0f;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
+:root {
+  --primary: #ffffff;
+  --secondary: #111111;
+  --accent: #000000;
+  --input-bg: #1e1e1e;
+  --input-border: #333333;
+  --shadow: rgba(255, 255, 255, 0.1);
 }
 
-/* === FORM WRAPPER === */
-#root {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--secondary);
+  color: var(--primary);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
-.wrapper {
-  width: 100%;
+.container {
+  background-color: var(--accent);
+  border-radius: 14px;
+  padding: 40px 30px;
   max-width: 400px;
-  padding: 30px;
-  background: #1a1a1a;
-  border: 2px solid #ff2b74;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #ff2b74aa;
+  width: 100%;
+  box-shadow: 0 10px 40px var(--shadow);
+  transition: 0.3s ease-in-out;
 }
 
-/* === HEADER === */
+.container:hover {
+  box-shadow: 0 15px 50px rgba(255, 255, 255, 0.2);
+}
+
 .header {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .header img {
-  width: 80px;
+  width: 60px;
   margin-bottom: 10px;
 }
 
-.header h2 {
-  font-size: 24px;
-  margin-bottom: 5px;
-  color: #ff2b74;
+.header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--primary);
 }
 
 .header p {
@@ -46,57 +59,44 @@ body {
   color: #ccc;
 }
 
-/* === FORM === */
-.form-wrap {
-  margin-top: 20px;
-}
-
 .input-box {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-input[type="text"],
-input[type="password"] {
+input {
   width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  background-color: #2a2a2a;
-  color: #fff;
+  padding: 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--primary);
   font-size: 14px;
-  box-shadow: inset 0 0 5px #000;
 }
 
 input::placeholder {
-  color: #999;
-}
-
-/* === BUTTON === */
-.btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #ff2b74;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: #e91e63;
-}
-
-/* === FOOTER TEXT === */
-.text {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 13px;
   color: #888;
 }
 
-.text strong {
-  color: #ff2b74;
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: var(--secondary);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #f0f0f0;
+}
+
+.footer-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
 }
